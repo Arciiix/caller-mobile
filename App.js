@@ -1,19 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+//Views
+import Home from "./components/Home";
+import Calling from "./components/Calling";
+import Message from "./components/Message";
+
+const icon = require("./assets/icon.png");
+
+const AppNavigator = createStackNavigator(
+  {
+    Home: Home,
+    Calling: Calling,
+    Message: Message,
   },
-});
+  {
+    initialRouteName: "Home",
+  }
+);
+
+const AppContainer = createAppContainer(AppNavigator);
+
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}

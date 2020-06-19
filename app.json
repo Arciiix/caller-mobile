@@ -1,28 +1,32 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "name": "Caller",
+    "slug": "caller",
+    "platforms": ["android"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "backgroundColor": "#14bdac",
+    "androidStatusBar": {
+      "backgroundColor": "#14bdac"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#14bdac"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    }
+    "android": {
+      "package": "com.Arciiix.caller",
+      "googleServicesFile": "./google-services.json",
+      "backgroundColor": "#14bdac"
+    },
+    "notification": {
+      "icon": "./assets/icon.png",
+      "color": "#14bdac"
+    },
+    "assetBundlePatterns": ["**/*"]
   }
 }
