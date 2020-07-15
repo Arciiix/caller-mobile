@@ -107,7 +107,7 @@ class Home extends React.Component {
     super(props);
     this.state = {
       isLoaded: false,
-      isActive: { isActive: false, onThisDevice: false },
+      isActive: { isActive: false, onThisDevice: false, device: "" },
     };
   }
   async componentDidMount() {
@@ -131,7 +131,9 @@ class Home extends React.Component {
       if (type === "mobilePush") {
         this.setState({ isActive: { isActive: true, onThisDevice: true } });
       } else {
-        this.setState({ isActive: { isActive: true, onThisDevice: false } });
+        this.setState({
+          isActive: { isActive: true, onThisDevice: false, device: type },
+        });
       }
     } else {
       this.setState({ isActive: { isActive: false, onThisDevice: false } });
@@ -166,6 +168,19 @@ class Home extends React.Component {
       return isText ? this.styles.textInactive : this.styles.inactive;
     }
   }
+
+  getActiveText() {
+    if (this.state.isActive.isActive) {
+      if (this.state.isActive.onThisDevice) {
+        return "Aktywny";
+      } else {
+        return this.state.isActive.device;
+      }
+    } else {
+      return "Nieaktywny";
+    }
+  }
+
   async setToken() {
     let activeStatusPromise = new Promise((resolve, reject) => {
       socket.emit(`isActive`, room);
@@ -214,7 +229,7 @@ class Home extends React.Component {
               style={[this.styles.activeDot, this.activeState(false)]}
             ></View>
             <Text style={[this.styles.activeText, this.activeState(true)]}>
-              {this.state.isActive.isActive ? "Aktywny" : "Nieaktywny"}
+              {this.getActiveText.bind(this)()}
             </Text>
           </View>
           <View style={this.styles.buttonsDiv}>
